@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 
 export class NewPlaybook extends Component {
     constructor() {
@@ -39,6 +41,13 @@ export class NewPlaybook extends Component {
                     fullWidth
                     multiline
                 />
+                <Fab
+                    color='secondary'
+                    aria-label='Add'
+                    size='small'
+                >
+                    <AddIcon />
+                </Fab>
 
             </div>
         )
