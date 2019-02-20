@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,10 +17,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import Group from '@material-ui/icons/Group';
+import Settings from '@material-ui/icons/Settings';
 import {Route, Switch} from 'react-router-dom'
-import { Cohorts, Playbooks } from './'
+import { Cohorts, Playbooks, NewPlaybook } from './'
 
 const drawerWidth = 240;
 
@@ -116,7 +118,7 @@ class PersistentDrawerLeft extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Persistent drawer
+              Student Playbook Dashboard
             </Typography>
           </Toolbar>
         </AppBar>
@@ -136,22 +138,33 @@ class PersistentDrawerLeft extends React.Component {
           </div>
           <Divider />
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+          <Link to="/home/playbooks" style={{ textDecoration: 'none' }}>
+             <ListItem button >
+                <ListItemIcon>
+                  <LibraryBooks />
+                </ListItemIcon>
+                <ListItemText primary='Playbooks' />
               </ListItem>
-            ))}
+          </Link>
+          <Link to="/home/cohorts" style={{ textDecoration: 'none' }}>
+             <ListItem button >
+                <ListItemIcon>
+                  <Group />
+                </ListItemIcon>
+                <ListItemText primary='Cohorts' />
+              </ListItem>
+          </Link>
+          <Link to="/settings" style={{ textDecoration: 'none' }}>
+             <ListItem button >
+                <ListItemIcon>
+                  <Settings />
+                </ListItemIcon>
+                <ListItemText primary='Settings' />
+              </ListItem>
+          </Link>
+
           </List>
           <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
         <main
           className={classNames(classes.content, {
@@ -160,8 +173,9 @@ class PersistentDrawerLeft extends React.Component {
         >
           <div className={classes.drawerHeader} />
           <Switch>
-            <Route path='/cohorts' component={Cohorts} />
-            <Route path='/playbooks' component={Playbooks} />
+            <Route path='/home/cohorts' component={Cohorts} />
+            <Route path='/home/playbooks' component={Playbooks} />
+            <Route path='/home/new-playbook' component={NewPlaybook} />
             <Route component={Playbooks} />
           </Switch>
         </main>

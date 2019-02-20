@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Login, Home } from './components'
+import { Login, Home, Playbooks, Cohorts } from './components'
 
 
 export class App extends Component {
@@ -10,6 +10,8 @@ export class App extends Component {
                 <Switch>
                     <Route path='/login' component={Login} />
                     <Route path='/home' component={Home} />
+                    <Route path='/playbooks' component={Playbooks} />
+                    <Route path='/cohorts' component={Cohorts} />
                     <Route component={Login} />
                 </Switch>
             </div>
